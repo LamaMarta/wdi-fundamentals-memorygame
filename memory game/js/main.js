@@ -1,14 +1,3 @@
-//console.log("Up and running!");
-
-//var cardOne = "queen";
-//var cardTwo = "queen";
-//var cardThree = "king";
-//var cardFour = "king";
-
-//console.log("User flipped " + cardOne);
-//console.log("User flipped " + cardThree);
-
-
 
 var cards = [
 {
@@ -36,44 +25,44 @@ cardImage: "images/king-of-diamonds.png"
 var cardsInPlay = [];
 //cardsInPlay.push(cards);
 
-//function checkForMatch(){
-//	if (cardsInPlay[0] === cardsInPlay[1]) {
-  //console.log("You found a match!");
-//} else {
- // console.log("Sorry, try again.");
-//}
+var checkForMatch = function(){
+	if (cardsInPlay[0] === cardsInPlay[1]) {
+  alert("You found a match!");
+} else {
+  alert("Sorry, try again.");
 
-//}
+}
+};
+ 
+var flipCard = function(){
+var cardId = this.getAttribute('data-id');
+this.setAttribute('src', cards[cardId].cardImage);
 
-function flipCard(cardId){
-
-//var cardOne = cards[0];
-//cardsInPlay.push(cardOne);
-//console.log("User flipped " + cardOne);
-
-//var cardTwo = cards[2]
-//cardsInPlay.push(cardTwo);
-//console.log("User flipped " + cardTwo);
-
-//cards[cardId];
-cards[cardId].rank;
-console.log("User flipped " + cards[cardId].rank);
-cardsInPlay.push(cards);
-console.log(cards[cardId].cardImage);
-console.log(cards[cardId].suit);
+//cards[cardId].rank;
+//console.log("User flipped " + cards[cardId].rank);
+cardsInPlay.push(cards[cardId].rank);
+//console.log(cards[cardId].cardImage);
+//console.log(cards[cardId].suit);
 
 if (cardsInPlay.length === 2){
 
-	if (cardsInPlay[0] === cardsInPlay[1]) {
-    alert("You found a match!");
+   checkForMatch();
+
 	} else {
-		alert("Sorry, try again.");
-	}
+		flipCard();
 }
-//checkForMatch();
+};
 
+
+var  createBoard = function(){
+	for (var i = 0; i < cards.length; i++) {
+    var cardElement = document.createElement('img');
+    cardElement.setAttribute('src', "images/back.png");
+    cardElement.setAttribute('data-id', i);
+
+    cardElement.addEventListener('click',flipCard);
+    document.getElementById('game-board').appendChild(cardElement);
 }
+};
 
-flipCard(0);
-flipCard(2);
-
+createBoard();
